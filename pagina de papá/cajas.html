@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial; display: flex; justify-content: center; padding: 50px; background: #f4f4f9; }
+        form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <form id="miFormulario">
+        <h3>Registro a Excel</h3>
+        <input type="text" name="Nombre" placeholder="Tu nombre" required>
+        <input type="email" name="Email" placeholder="Tu email" required>
+        <button type="submit" id="btnEnviar">Enviar Datos</button>
+    </form>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxmT4Yf2378kot0KOoFiz9cc-8IvRMew-7xyPZ5Yfv2KECa5Vft37qhc5hLXUGxm_Nq6g/exec';
+        const form = document.getElementById('miFormulario');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert("¡Datos guardados con éxito!"))
+                .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+</body>
+</html>
